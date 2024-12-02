@@ -34,12 +34,22 @@ const splitArray = (arr) => {
     return { oddArr, evenArr };
 };
 
+// Calculate value repetition
+const calcOccuranceRepetition = (arr1, arr2) => {
+    return arr1.map((val) => val * arr2.filter((x) => x === val).length);
+};
+
 // Main execution function
 (async function () {
     const list = await fetchListData();
     const { oddArr, evenArr } = splitArray(list);
 
-    const test = oddArr.map((val) => evenArr.filter((x) => x === val).length);
+    const occuranceArray = calcOccuranceRepetition(oddArr, evenArr);
+    const similarityScore = occuranceArray.reduce((acc, val) => acc + val, 0);
 
-    console.log(JSON.stringify(test, null, 2));
+    console.log("Similarity Score: ", similarityScore);
 })();
+
+/**
+ * My Final Score: 19457120
+ */
