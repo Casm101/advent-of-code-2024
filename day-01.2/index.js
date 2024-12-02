@@ -1,12 +1,10 @@
 /**
- * Advent day 01.1 planning:
+ * Advent day 01.2 planning:
  *
  * Fetch list data from site using session cookie
- * ¿? Propmt user for session cookie making code reusable
- * Split data into 2 arrays
- * Sort both arrays in ascending order
- * Calculate distance between array elements
- * Calculate sum of total distance
+ * Split data into 2 separate arrays
+ * Map first list to find value occurances in second list
+ * Sum all ocurrances to find similarity score
  */
 
 // Constants
@@ -36,28 +34,12 @@ const splitArray = (arr) => {
     return { oddArr, evenArr };
 };
 
-// Sort numerical array in incremental order
-const sortArrayIncremental = (arr) => arr.sort((a, b) => a - b);
-
-// Get distance between numerical pairs in arrays
-const getDistance = (arr1, arr2) => {
-    return arr1.map((val, idx) => Math.abs(val - arr2[idx]));
-};
-
 // Main execution function
 (async function () {
     const list = await fetchListData();
     const { oddArr, evenArr } = splitArray(list);
 
-    const sortedOddArr = sortArrayIncremental(oddArr);
-    const sortedEvenArr = sortArrayIncremental(evenArr);
+    const test = oddArr.map((val) => evenArr.filter((x) => x === val).length);
 
-    const distances = getDistance(sortedOddArr, sortedEvenArr);
-    const finalDistance = distances.reduce((acc, val) => acc + val, 0);
-
-    console.log(finalDistance);
+    console.log(JSON.stringify(test, null, 2));
 })();
-
-/**
- * My Final Score: 2264607
- */

@@ -1,0 +1,14 @@
+{
+  "name": "day-01.1",
+  "description": "",
+  "author": "",
+  "keywords": [],
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "vanilla": "node index.js",
+    "typescript": "tsx index.ts"
+  },
+  "type": "module",
+  "license": "ISC"
+}
